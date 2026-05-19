@@ -8,9 +8,13 @@ package com.mycompany.schoolemployeesystem;
  *
  * @author valec
  */
-public class SchoolEmployeeSystem {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public class SchoolEmployeeSystem {
+        
+        public static void main(String[] args) {
+            MenuController menu = new MenuController();
+            menu.start();
+        }
+        
     }
-}
+
