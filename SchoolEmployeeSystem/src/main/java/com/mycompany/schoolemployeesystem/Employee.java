@@ -10,4 +10,13 @@ package com.mycompany.schoolemployeesystem;
  */
 public class Employee {
     
+    String name;
+    String managerType;
+    String department;
+    
+    public Employee(String name, String managerType, String department) {
+        this.name = name;
+        this.manager = managerType;
+        this.departement = department;
+    }
 }
