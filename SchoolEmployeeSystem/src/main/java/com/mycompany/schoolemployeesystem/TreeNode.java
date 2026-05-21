@@ -10,4 +10,13 @@ package com.mycompany.schoolemployeesystem;
  */
 public class TreeNode {
     
+    Employee data;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(Employee data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
 }
