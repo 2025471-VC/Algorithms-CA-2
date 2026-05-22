@@ -35,4 +35,16 @@ public class EmployeeList {
         System.out.println("Employee added: " + e.name);
     }
     
+    public String[] getAllNames() {
+        String[] names = new String[count];
+        for (int i = 0; i < count; i++) {
+            names[i] = employees[i].name;
+        }
+        return names;
+    }
+
+    public int getCount() {
+        return count;
+    }
+    
 }
