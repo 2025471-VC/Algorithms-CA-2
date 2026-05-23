@@ -13,22 +13,22 @@ import java.io.IOException;
  *
  * @author valec
  */
-public class FileReaderService {
+public class FileReaderService { // Reads applicant files line by line
     
-    public static int loadApplicants(String[] names) {
-
+    public static int loadApplicants(String[] names) { //Loads applicant names from the default file "Applicants_Form_2024.txt"
         int count = 0;
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Applicants_Form_2024.txt"));
-            br.readLine();
+            BufferedReader br = new BufferedReader(new FileReader("Applicants_Form_2024.txt")); // BufferedReader allows efficient reading of text files line by line.
+            br.readLine();  // Skips the header row (usually column titles).
             String line;
 
+            // Extracts first and last name from CSV format
             while ((line = br.readLine()) != null && count < names.length) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(","); // Splits CSV line into columns using comma as delimiter.
                 
                 if (parts.length >= 2) {
-                    String fullName = parts[0].trim() + " " + parts[1].trim();
+                    String fullName = parts[0].trim() + " " + parts[1].trim(); // Combines first name + last name into a single string.
                     names[count] = fullName;
                     count++;
 
@@ -44,8 +44,7 @@ public class FileReaderService {
         return count;
     }
     
-    public static int loadApplicantsFromFile(String filename, String[] names) {
-
+    public static int loadApplicantsFromFile(String filename, String[] names) { //Loads applicant names from a file chosen by the user.
     int count = 0;
 
     try {
@@ -72,7 +71,8 @@ public class FileReaderService {
     }
 }
     
-    public static String[] listApplicantFiles() {
+    public static String[] listApplicantFiles() { //Scans the project directory and returns all files whose names follow the pattern "Applicants_Form_*.txt".
+
 
     File folder = new File("."); // current project folder
     File[] files = folder.listFiles();

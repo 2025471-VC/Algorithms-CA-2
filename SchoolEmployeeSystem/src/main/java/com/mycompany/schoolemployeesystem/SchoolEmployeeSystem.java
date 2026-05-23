@@ -14,44 +14,48 @@ import java.util.Scanner;
 
     public class SchoolEmployeeSystem {
         
-        Scanner sc = new Scanner(System.in);
-    EmployeeList list = new EmployeeList();
+    Scanner sc = new Scanner(System.in); // Reads user input from console
+    EmployeeList list = new EmployeeList(); // Stores all employees added manually
 
     public static void main(String[] args) {
-        SchoolEmployeeSystem system = new SchoolEmployeeSystem();
-        system.start();
+        SchoolEmployeeSystem system = new SchoolEmployeeSystem(); // Creates system instance
+        system.start(); // Starts the main menu loop
     }
 
-    /**
-     * Main menu loop with input validation.
-     */
+    //Main menu loop with input validation.
     public void start() {
 
-     while (true) {
+     while (true) { // Infinite loop until user chooses EXIT
         try {
 
+            // Displays menu header
             System.out.println("\n==============================");
             System.out.println("     SCHOOL EMPLOYEE SYSTEM");
             System.out.println("==============================");
 
+            // Dynamically prints menu options from enum
             int i = 1;
             for (MenuOption option : MenuOption.values()) {
                 System.out.println(i + ". " + option);
                 i++;
             }
 
+            // Reads user choice
             System.out.println(" ");
             System.out.print("Choose option (From 1 to 5): ");
             int choice = sc.nextInt();
             sc.nextLine();
 
+            // Validates option range
             if (choice < 1 || choice > MenuOption.values().length) {
                 System.out.println("Invalid option.");
                 continue;
             }
 
+            // Converts number to enum value
             MenuOption selected = MenuOption.values()[choice - 1];
 
+            // Executes selected option
             switch (selected) {
                 case ADD_EMPLOYEE -> addEmployeeMenu();
                 case SORT_APPLICANTS -> sortApplicants();
@@ -59,35 +63,32 @@ import java.util.Scanner;
                 case BUILD_HIERARCHY -> buildHierarchy();
                 case EXIT -> {
                     System.out.println("Exiting system...");
-                    return;
+                    return; // Ends program
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("Invalid input. Numbers only.");
-            sc.nextLine();
+            System.out.println("Invalid input. Numbers only."); // Handles non-numeric input
+            sc.nextLine(); // Clears invalid input
         }
       }
     }
 
     
     //Add a new employee to the system.
-private void addEmployeeMenu() {
+    private void addEmployeeMenu() {
 
     System.out.println("\n--- ADD NEW EMPLOYEE ---\n");
 
-    // NAME
     System.out.print("Enter full name: ");
     String name = sc.nextLine();
 
-    if (!Validator.validateName(name)) {
+    if (!Validator.validateName(name)) { // Checks format and characters
         System.out.println("Error: Invalid name.");
         return;
     }
 
-    // ============================
-    // 1. CHOOSE DEPARTMENT
-    // ============================
+    //Choose department
     System.out.println("\nChoose a Department:");
     System.out.println("1. Academic Department");
     System.out.println("2. Administration Department");
@@ -96,7 +97,7 @@ private void addEmployeeMenu() {
 
     System.out.print("Enter option (1-4): ");
     int deptChoice = sc.nextInt();
-    sc.nextLine();
+    sc.nextLine(); // Clears buffer
 
     String department = "";
     String position = "";
@@ -105,9 +106,9 @@ private void addEmployeeMenu() {
     switch (deptChoice) {
 
         case 1 -> {
-            department = "Academic Department";
+            department = "Academic Department"; // Assigns department name
 
-            // POSITIONS FOR ACADEMIC
+            // Positions for academic 
             System.out.println("\nChoose a Position:");
             System.out.println("1. Principal");
             System.out.println("2. Head Teacher");
@@ -245,14 +246,13 @@ private void addEmployeeMenu() {
         }
     }
 
-    // CREATE OBJECTS
-    Manager manager = new Manager(position);
-    Department deptObj = new Department(department);
+    Manager manager = new Manager(position); // Stores role/position
+    Department deptObj = new Department(department); // Stores department name
 
-    Employee e = new Employee(name, manager, deptObj);
-    list.addEmployee(e);
+    Employee e = new Employee(name, manager, deptObj); // Creates employee object
+    list.addEmployee(e); // Adds employee to list
 
-    // FINAL MESSAGE
+    //Final message
     System.out.println();
     if (subject.isEmpty()) {
         System.out.println("\"" + name + "\" has been added as \"" 
@@ -269,7 +269,7 @@ private void addEmployeeMenu() {
     System.out.println("\n--- SORT APPLICANTS ---\n");
 
     // 1. List available files
-    String[] availableFiles = FileReaderService.listApplicantFiles();
+    String[] availableFiles = FileReaderService.listApplicantFiles(); //Reads all applicant files
 
     if (availableFiles.length == 0) {
         System.out.println("No applicant files found in the project folder.");
@@ -356,13 +356,13 @@ private void addEmployeeMenu() {
         System.out.print("Enter name to search: ");
         String target = sc.nextLine();
 
-        String[] names = new String[list.count];
+        String[] names = new String[list.count]; // Temporary array for sorting
 
         for (int i = 0; i < list.count; i++) {
             names[i] = list.employees[i].name;
         }
 
-        Sorter.recursiveSort(names, list.count);
+        Sorter.recursiveSort(names, list.count); // Sorts alphabetically
 
         Employee[] sortedEmployees = new Employee[list.count];
 
@@ -404,15 +404,15 @@ private void addEmployeeMenu() {
         BinaryTree tree = new BinaryTree();
 
         for (int i = 0; i < list.count; i++) {
-            tree.insert(list.employees[i]);
+            tree.insert(list.employees[i]); // Level-order insertion
         }
 
         System.out.println("\nEMPLOYEE HIERARCHY (BFS Traversal):");
         System.out.println(" ");
-        tree.bfs();
+        tree.bfs();  // Prints employees level by level
 
-        System.out.println("\nTree Height: " + tree.getHeight(tree.root));
-        System.out.println("Total Nodes: " + tree.getNodeCount(tree.root));
+        System.out.println("\nTree Height: " + tree.getHeight(tree.root)); // Recursive height calculation
+        System.out.println("Total Nodes: " + tree.getNodeCount(tree.root)); // Recursive node count
 
         System.out.println("\nHierarchy generated successfully.");
     }

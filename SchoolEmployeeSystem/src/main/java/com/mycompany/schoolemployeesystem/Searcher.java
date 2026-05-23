@@ -10,6 +10,7 @@ package com.mycompany.schoolemployeesystem;
  */
 public class Searcher {
     
+    // Recursive binary search on Employee array
     public static int recursiveSearch(Employee[] arr, String target, int left, int right) {
 
         if (left > right) {
@@ -18,7 +19,7 @@ public class Searcher {
 
         int mid = (left + right) / 2;
 
-        int compare = arr[mid].name.compareToIgnoreCase(target);
+        int compare = arr[mid].name.compareToIgnoreCase(target); // Compares names ignoring case
 
         if (compare == 0) {
             return mid;

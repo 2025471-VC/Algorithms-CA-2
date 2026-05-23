@@ -10,7 +10,7 @@ package com.mycompany.schoolemployeesystem;
  */
 public class Validator {
     
-    //Validates that the name is not empty.
+    // Validates that name contains only letters and spaces
     public static boolean validateName(String name) {
         if (name == null || name.trim().isEmpty()) {
         return false;
@@ -25,7 +25,7 @@ public class Validator {
     String clean = name.replace(" ", "");
 
     // 2 letters minimum
-    return clean.length() >= 2;
+    return clean.length() >= 2; // Ensures minimum length of 2 characters
     }    
 
     //Validates allowed manager types.

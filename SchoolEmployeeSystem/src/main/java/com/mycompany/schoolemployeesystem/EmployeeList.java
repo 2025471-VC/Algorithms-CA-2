@@ -5,14 +5,14 @@
 package com.mycompany.schoolemployeesystem;
 
 /**
- * Stores employees using a fixed-size array of 50 elements.
+ * Stores employees using a fixed-size array of 20 elements.
  * Provides basic operations such as add, check full and check empty.
  * @author valec
  */
 public class EmployeeList {
     
-    Employee[] employees = new Employee[20];
-    int count = 0;
+    Employee[] employees = new Employee[20]; // Fixed-size storage
+    int count = 0; // Tracks number of employees stored
 
     //Checks if the array is full.
     public boolean isFull() {

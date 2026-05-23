@@ -11,12 +11,11 @@ package com.mycompany.schoolemployeesystem;
  */
 public class Employee {
     
-    String name;
-    Manager managerType;
-    Department department;
+    String name; // Full name of employee
+    Manager managerType; // Position or role
+    Department department; // Department object
     
     //Constructor to create a new Employee object
-    
     public Employee(String name, Manager managerType, Department department) {
         this.name = name;
         this.managerType = managerType;

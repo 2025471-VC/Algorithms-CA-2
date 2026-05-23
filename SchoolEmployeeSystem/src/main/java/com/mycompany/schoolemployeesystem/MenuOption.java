@@ -8,7 +8,7 @@ package com.mycompany.schoolemployeesystem;
  *
  * @author valec
  */
-public enum MenuOption {
+public enum MenuOption {  // Enum representing all menu options
     
     ADD_EMPLOYEE,
     SORT_APPLICANTS,

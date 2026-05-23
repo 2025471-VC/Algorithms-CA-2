@@ -8,7 +8,7 @@ package com.mycompany.schoolemployeesystem;
  *
  * @author valec
  */
-public class TreeNode {
+public class TreeNode { 
     
     Employee data;
     TreeNode left;

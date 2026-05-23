@@ -8,20 +8,20 @@ package com.mycompany.schoolemployeesystem;
  *
  * @author valec
  */
-public class Department {
+public class Department { // Simple data classes storing department name
     
     private String name;
 
     public Department(String name) {
-        this.name = name;
+        this.name = name; // Stores department name internally
     }
 
-    public String getName() {
+    public String getName() { //This method provides controlled access to the private field.
         return name;
     }
 
     @Override
-    public String toString() {
+    public String toString() { //This improves readability when displaying employee information.
         return name;
     }
 
