@@ -5,18 +5,21 @@
 package com.mycompany.schoolemployeesystem;
 
 /**
- *
+ *Represents a single employee in the school system.
+ * Stores basic information such as name, manager type and department.
  * @author valec
  */
 public class Employee {
     
     String name;
-    String managerType;
-    String department;
+    Manager managerType;
+    Department department;
     
-    public Employee(String name, String managerType, String department) {
+    //Constructor to create a new Employee object
+    
+    public Employee(String name, Manager managerType, Department department) {
         this.name = name;
-        this.manager = managerType;
-        this.departement = department;
+        this.managerType = managerType;
+        this.department = department;
     }
 }
